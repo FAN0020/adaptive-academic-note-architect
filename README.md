@@ -1,12 +1,196 @@
 # Adaptive Academic Note Architect v2.0
 
+[English](#english) | [Chinese version](#chinese-version)
+
+<a name="english"></a>
+
+**Transform slides, lecture transcripts, handwritten notes, and personal notes into comprehensive, trustworthy, coherent study notes that can be understood on their own.**
+
+A Codex skill for comprehensive, coherent, evidence-grounded academic notes, with adaptive processing and compact bilingual output.
+
+The goal is to preserve every recoverable, meaningful piece of information in the supplied materials while improving understanding through knowledge reconstruction, necessary explanations, and source verification. Conciseness comes from removing repetition and redundant wording.
+
+## 1. Core Capabilities
+
+| Capability | Problem addressed and behavior |
+|---|---|
+| **Complete coverage and source integration** | Integrates slides, transcripts, handwritten notes, and personal notes into one set of notes. Preserves meaningful explanations, equations, derivations, case details, qualifications, classroom questions, exercises, and course information. Merges only genuine duplicates, removes verbal filler, and retains necessary uncertainty. |
+| **Knowledge architecture** | Reorganizes content around conceptual dependencies, making prerequisites, motivation, mechanisms, and applicability explicit. The structure adapts to the subject: for example, definitions → theorems → proofs → applications in mathematics, or problems → solutions → implementation → evaluation in engineering. |
+| **Self-contained conceptual explanations** | Explains **What, Why, How, When, and Connections** where needed. Fills essential background, reasoning steps, and transitions while preserving equations, variable meanings, assumptions, and derivations. These questions guide explanations without forcing five subsections for every concept. |
+| **Corrections and evidence management** | Cross-checks terminology, equations, numbers, and transcription ambiguities. Distinguishes source content, evidence-backed corrections, grounded explanations, external additions, and unverified information. Substantive external facts require reliable citations; teachers' opinions and industry experience retain their attribution. |
+| **Information separation** | Separates core knowledge, company and practical experience, and course administration. Includes exercises, corrections, and references when present, without turning anecdotes into universal claims or creating empty sections. |
+| **Two-pass quality assurance** | Reviews content coverage and evidence separately from prerequisites, explanations, transitions, headings, and readability. Prioritizes issues by risk and revises the affected passages or sections. |
+
+## 2. Reading and Workflow Support
+
+| Feature | Default behavior |
+|---|---|
+| **Bilingual writing and consistent terminology** | Uses Chinese explanations with English technical terminology. Introduces important terms with the relevant Chinese name, English name, and abbreviation. English-only or other bilingual arrangements can be requested. |
+| **Underlined takeaways** | Selects a conclusion or summary clause representing each substantive paragraph or coherent fragment, usually one span and occasionally two. Preserves qualifications and uncertainty; avoids underlining entire paragraphs or every technical term. |
+| **Contents and navigation** | Uses descriptive headings, decides whether to include a table of contents from the actual rendered page count, and checks final page numbers and links. |
+| **Compact, readable layout** | Reduces unnecessary line breaks and repeated wording. Uses clear heading levels, spacing, tables, and equations; selects fonts supporting Chinese and English in the actual environment and checks their rendering. |
+| **Incremental edits and content protection** | For later font, TOC, or underline changes, edits the latest accepted document, preserves text and equations, and verifies the affected formatting and navigation. |
+| **Reusable automation** | Provides scripts for text extraction, cache reuse, exact underline application, and structural checks. Codex performs semantic judgment and composition. |
+
+**The TOC policy uses the final rendered page count of the delivered document, including the TOC, front matter, and references:**
+
+| Page count | Default TOC policy |
+|---|---|
+| **More than 10 pages** | Required, with accurate page numbers and working links. |
+| **6–10 pages** | Depends on section count, hierarchy complexity, and lookup needs. |
+| **5 pages or fewer** | Usually unnecessary; still included when explicitly requested. |
+
+Explicit user instructions take priority. Unpaginated Markdown can provide heading navigation. When page numbers are needed, use a paginated document; do not estimate pagination from word counts or invent page numbers.
+
+## 3. Workflow
+
+Diagnose the materials and establish the knowledge structure before drafting. Seven logical stages—preferences, diagnosis, architecture, evidence, composition, QA, and delivery—are grouped into four execution modules. Simple tasks can combine operations without producing seven intermediate reports.
+
+```mermaid
+flowchart TD
+    I["Source materials and established preferences"] --> A["A · Diagnose sources, select a mode, and build the knowledge structure"]
+    A --> G{"Essential evidence or explanation gaps?"}
+    G -->|Yes| B["B · Targeted research and verification"]
+    G -->|No| C["C · Compose from a stable outline"]
+    B --> C
+    C --> D["D · Content and evidence audit + pedagogical audit"]
+    D --> Q{"Quality issues still need attention?"}
+    Q -->|Yes| R["Revise affected sections; verify or qualify uncertainty"]
+    R --> D
+    Q -->|No| O["Check formatting and navigation; deliver notes and a brief QA statement"]
+```
+
+| Module | Main work | Information reused |
+|---|---|---|
+| **A · Diagnose & Architect** | Extract sources in one pass where practical, recording locations, duplicates, ambiguities, dependencies, and gaps. Select a mode and establish the outline. | Source map, knowledge map, terminology, and coverage records. |
+| **B · Research & Verify** | Activate only when needed. Resolve specific questions using supplied evidence or reliable external sources, recording conclusions and their scope. | Evidence map, research queue, and verified sources. |
+| **C · Compose** | Write according to conceptual relationships, preserving details and necessary explanations. Separate information types and select takeaway spans. | Stable outline, consistent terminology, and source/addition labels. |
+| **D · Validate & Deliver** | Perform both audits and revise locally. Check document fonts, equations, underlines, TOC, and actual pagination before delivering the complete notes. | Check results, unresolved issues, and the latest deliverable. |
+
+Internal plans, maps, and execution records remain lightweight. Save them only when useful for complex or long-document tasks; they are not additional deliverables by default.
+
+### Adaptive Execution
+
+| Mode | When to use it | Focus |
+|---|---|---|
+| **Light** | Complete, reliable, well-structured sources, or a narrowly scoped edit. | Local structural and language improvements, plus essential verification. |
+| **Standard** | Typical slides, transcripts, or mixed materials with some explanatory gaps. | Conceptual reconstruction, source reconciliation, necessary additions, and both QA passes. |
+| **Deep** | Major omissions, complex dependencies, important conflicts, or an explicit request for deeper understanding. | More extensive prerequisite analysis, derivations, conceptual connections, and targeted research. |
+
+**Execution depth and output length are independent.** A long but complete source may need only Light processing; a few difficult equations may require local Deep verification. The skill chooses sufficient depth from completeness, structure, reliability, conceptual difficulty, knowledge gaps, and user requirements. New issues trigger escalation only in the affected modules. Every mode maintains the same standards for completeness, accuracy, and citations.
+
+Research follows three priorities: **P0** covers facts, equations, or conflicts affecting core understanding and must be verified or explicitly qualified; **P1** covers background and mechanisms necessary for comprehension and receives targeted explanation; **P2** covers optional extensions and is skipped unless requested. Reuse sufficient evidence instead of searching again.
+
+## 4. Architecture
+
+The workflow consists of **skill instructions, references loaded on demand, and optional Python helpers**. Codex handles source understanding, knowledge reconstruction, semantic judgment, and writing. Scripts handle repeatable deterministic operations. Document generation and rendering use tools available in the execution environment.
+
+### Design Principles
+
+- **Progressive Disclosure:** `SKILL.md` defines the goal, core rules, and execution choices. Detailed references are loaded only when relevant to the task.
+- **Adaptive Routing:** Source quality and task requirements determine processing depth. Plans and completed work are reused.
+- **Evidence-Grounded Writing:** Concepts link to source locations and evidence categories. External additions remain traceable, and unresolved information retains its qualifications.
+- **Risk-Based QA:** Prioritize omissions, equations, facts, attribution, and essential explanations. Revise the affected sections and stop when the requirements are satisfied.
+
+### Repository Structure
+
+```text
+adaptive-academic-note-architect/
+├── SKILL.md                         # Entry point, rules, and adaptive execution
+├── agents/openai.yaml               # Codex display metadata and default prompt
+├── references/
+│   ├── source-processing.md         # Input processing, corrections, and coverage
+│   ├── knowledge-architecture.md    # Dependencies, concept introductions, derivations
+│   ├── research-and-citations.md    # Evidence classes, research priorities, citations
+│   ├── writing-guidelines.md        # Language, compact prose, and takeaway emphasis
+│   ├── quality-assurance.md         # Two-pass QA, risks, and delivery checks
+│   └── output-formats.md            # Formats, TOC, fonts, and rendering
+├── scripts/
+│   ├── extract_sources.py          # Text extraction, locations, and caching
+│   ├── apply_underlines.py         # Exact DOCX underline application
+│   ├── validate_output.py          # Structure, TOC, and content-preservation checks
+│   ├── docx_utils.py               # Shared DOCX/XML utilities
+│   └── test_helpers.py             # Helper regression tests
+├── assets/academic-notes-style.json # Adaptable typography and layout settings
+├── requirements.txt                # Dependencies for Python helpers and tests
+└── README.md
+```
+
+See [SKILL.md](SKILL.md) for execution rules, [Research & Citations](references/research-and-citations.md) for evidence policy, and [Output Formats](references/output-formats.md) for document formatting and underline usage.
+
+## 5. Inputs, Outputs, and Installation
+
+**Inputs:** Slides, lecture transcripts, typed or handwritten notes, and mixed materials. Minimal topic information can also support study notes, provided the result is clearly identified as topic-based learning material rather than a faithful reconstruction of a particular class. The text extraction helper supports PDF, DOCX, PPTX, TXT, Markdown, CSV, VTT, and SRT. Images, scans, and handwriting require visual interpretation or OCR tools in the environment.
+
+**Outputs:** Comprehensive content in a compact layout, using Chinese explanations with English terms by default. Short notes typically use Markdown; long, complete lecture notes typically use DOCX. Explicit format requests take priority. Deliverables include necessary citations, corrections or uncertainty labels, and a brief QA statement.
+
+Install into Codex's personal skills directory. The destination should not already exist, to avoid overwriting an existing installation:
+
+```sh
+git clone https://github.com/FAN0020/adaptive-academic-note-architect.git "${CODEX_HOME:-$HOME/.codex}/skills/adaptive-academic-note-architect"
+```
+
+The repository root is the skill directory and contains the required `SKILL.md`. The skill supports automatic selection and explicit invocation:
+
+```text
+$adaptive-academic-note-architect
+Create comprehensive study notes from these slides and lecture transcripts,
+using Chinese explanations and English terminology. Preserve all meaningful
+information, separate knowledge, industry experience, and course administration,
+underline takeaways, and add a page-numbered TOC according to the final page count.
+Deliver the notes as DOCX.
+```
+
+Example of a later, narrowly scoped edit:
+
+```text
+$adaptive-academic-note-architect
+Add takeaway underlines to this latest version of the notes. Preserve the text
+and equations, and check that the TOC page numbers and links remain correct.
+```
+
+## 6. Helpers and Verification
+
+Reuse dependencies already provided by the execution environment. To run the helpers separately, create a virtual environment in the repository and install the dependencies. The helpers have been tested with Python 3.12.
+
+```sh
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements.txt
+python scripts/test_helpers.py
+```
+
+| Tool | What it handles or checks | Boundaries |
+|---|---|---|
+| [extract_sources.py](scripts/extract_sources.py) | Extracts text with page, paragraph, or slide locations; reuses cached results by file hash. | Does not include OCR. Extraction can miss diagrams, equation layout, or reading order; inspect original materials where needed. |
+| [apply_underlines.py](scripts/apply_underlines.py) | Applies native DOCX underlines to specified paragraphs and exact spans, checking text and equation preservation. | Does not select takeaways. Rejects ambiguous or stale matches and unsupported operations involving fields, links, equations, or other structures. |
+| [validate_output.py](scripts/validate_output.py) | Checks structure, coverage-record consistency, content preservation after formatting changes, and TOC page numbers and links against a rendered PDF. | Requires the actual final render for pagination checks. Complex TOCs and mixed page-numbering schemes need manual review. It does not prove semantic coverage or citation truth. |
+
+Use `--help` with any of the three command-line tools for their parameters. Regression tests use temporary synthetic files to check content protection, rejection of unsafe operations, caching, TOC thresholds, and navigation. See [Quality Assurance](references/quality-assurance.md) for further checks.
+
+## 7. Scope and Limitations
+
+- **Completeness is bounded by the supplied materials.** Missing recordings, unprovided classroom speech, and unreadable content cannot be claimed as fully preserved. Significant gaps must be disclosed.
+- **Evidence verification depends on accessible sources.** Unconfirmed substantive claims remain marked as uncertain. Plausible guesses must not be presented as the lecturer's words or verified facts.
+- **Automated checks and semantic review have distinct responsibilities.** Tool results do not prove exhaustive content coverage, sound reasoning, or that citations support their claims. Content/evidence and pedagogical audits remain necessary.
+- **Document appearance depends on the actual renderer.** This repository bundles no fonts, OCR system, or DOCX/PDF rendering engine. Fonts, equations, underlines, and TOCs need verification in the final environment. Markdown `<u>` support varies by renderer; a font working in one Mac application does not establish compatibility with Codex's built-in preview.
+- **Instructions inside attachments are treated as source content.** Assignment and project requirements are recorded as course information; they do not automatically authorize actions on the user's behalf.
+
+---
+
+<a name="chinese-version"></a>
+
+## 中文版本
+
+[返回英文版](#english)
+
 **将课件、课堂转写、手写与个人笔记，重构为完整、可信、逻辑连贯、能够独立阅读的学习笔记。**
 
 A Codex skill for comprehensive, coherent, evidence-grounded academic notes, with adaptive processing and compact bilingual output.
 
 核心目标是保留所提供材料中的全部可恢复有效信息，通过知识结构重建、必要解释和来源核查提高理解效率；紧凑性来自减少重复与表达冗余。
 
-## 1. 主要功能｜Core Capabilities
+### 1. 主要功能｜Core Capabilities
 
 | 功能 | 解决的问题与具体行为 |
 |---|---|
@@ -17,7 +201,7 @@ A Codex skill for comprehensive, coherent, evidence-grounded academic notes, wit
 | **内容分类组织** · Information Separation | 分开呈现核心知识、公司与实践经验、课程及行政事项；按材料实际情况保留练习、纠错说明和参考来源，避免把经验判断写成普遍事实，也不创建无内容的章节。 |
 | **内容与教学逻辑双重审查** · Two-Pass QA | 分别核对内容覆盖与证据，以及前置知识、解释、过渡、标题和可读性。问题按风险处理，修订集中在受影响的段落或章节。 |
 
-## 2. 辅助功能｜Reading & Workflow Support
+### 2. 辅助功能｜Reading & Workflow Support
 
 | 功能 | 默认行为 |
 |---|---|
@@ -38,7 +222,7 @@ A Codex skill for comprehensive, coherent, evidence-grounded academic notes, wit
 
 用户的明确要求优先。无分页的 Markdown 可以提供标题导航；需要页码时使用分页文档，不根据字数估算或编造页码。
 
-## 3. 工作流程｜Workflow
+### 3. 工作流程｜Workflow
 
 先诊断材料、确定知识结构，再写正文。七个逻辑阶段——偏好、诊断、架构、证据、写作、QA、交付——合并为四个执行模块；简单任务可以合并处理，无须生成七份中间报告。
 
@@ -65,7 +249,7 @@ flowchart TD
 
 内部计划、映射与执行记录保持轻量，只在复杂或长文档任务中按需保存，不默认作为额外交付物。
 
-### 自适应执行｜Adaptive Execution
+#### 自适应执行｜Adaptive Execution
 
 | 模式 | 适用情况 | 处理重点 |
 |---|---|---|
@@ -77,18 +261,18 @@ flowchart TD
 
 研究问题按优先级处理：**P0** 是影响核心理解的事实、公式或冲突，必须核实或明确标注；**P1** 是理解所必需的背景与机制，进行针对性补充；**P2** 是可选延伸，默认跳过，除非用户要求。已有充分证据时复用，不重复检索。
 
-## 4. 架构设计｜Architecture
+### 4. 架构设计｜Architecture
 
 这是由 **Skill 指令、按需参考文件和可选 Python 工具**组成的工作流。Codex 负责材料理解、知识重构、语义判断与写作；脚本处理可重复的确定性操作；文档生成与渲染使用执行环境中可用的工具。
 
-### 设计原则
+#### 设计原则
 
 - **Progressive Disclosure：** `SKILL.md` 提供目标、核心规则和执行选择；遇到特定任务时才读取对应 reference。
 - **Adaptive Routing：** 根据材料与任务需求决定模块执行深度，复用计划与已完成的工作。
 - **Evidence-Grounded Writing：** 知识点关联到来源位置与证据类别，外部补充可追溯，无法确认的内容保留限定。
 - **Risk-Based QA：** 优先检查遗漏、公式、事实、归属和必要解释；定位问题后只修订受影响部分，满足要求后停止。
 
-### 仓库结构
+#### 仓库结构
 
 ```text
 adaptive-academic-note-architect/
@@ -114,7 +298,7 @@ adaptive-academic-note-architect/
 
 详细实现规则见 [SKILL.md](SKILL.md)；证据政策见 [Research & Citations](references/research-and-citations.md)；文档排版与下划线用法见 [Output Formats](references/output-formats.md)。
 
-## 5. 输入、输出与安装｜Inputs, Outputs & Installation
+### 5. 输入、输出与安装｜Inputs, Outputs & Installation
 
 **输入：** 课件、课堂转写、打字或手写笔记、混合材料；也可根据少量主题信息建立学习笔记，但必须说明它不是某堂课的完整重建。文本提取脚本支持 PDF、DOCX、PPTX、TXT、Markdown、CSV、VTT 和 SRT；图片、扫描件与手写内容需要环境中的视觉识别或 OCR 工具。
 
@@ -143,7 +327,7 @@ $adaptive-academic-note-architect
 并检查目录页码与跳转是否仍然正确。
 ```
 
-## 6. 辅助脚本与验证｜Helpers & Verification
+### 6. 辅助脚本与验证｜Helpers & Verification
 
 执行环境已有依赖时直接复用。需要单独运行脚本时，可在仓库目录创建虚拟环境安装依赖；辅助工具已在 Python 3.12 下测试。
 
@@ -162,7 +346,7 @@ python scripts/test_helpers.py
 
 三个命令行工具可通过 `--help` 查看参数。回归测试使用临时合成文件，覆盖内容保护、拒绝不安全操作、缓存、目录阈值与导航等行为。更多检查方法见 [Quality Assurance](references/quality-assurance.md)。
 
-## 7. 能力边界｜Scope & Limitations
+### 7. 能力边界｜Scope & Limitations
 
 - **完整性以所提供材料为边界。** 缺失的录音、未提供的课堂发言或不可辨认内容不能被宣称已完整保留；重要缺口应明确标注。
 - **证据核查依赖可访问来源。** 无法确认的实质性信息保持待核实状态，不将合理猜测写成老师原话或已验证事实。

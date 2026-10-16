@@ -1,4 +1,4 @@
-# Adaptive Academic Note Architect v2.0
+# Adaptive Academic Note Architect v2.1
 
 [English](#english) | [Chinese version](#chinese-version)
 
@@ -25,11 +25,11 @@ The goal is to preserve every recoverable, meaningful piece of information in th
 
 | Feature | Default behavior |
 |---|---|
-| **Bilingual writing and consistent terminology** | Uses Chinese explanations with English technical terminology. Introduces important terms with the relevant Chinese name, English name, and abbreviation. English-only or other bilingual arrangements can be requested. |
+| **Bilingual writing and consistent terminology** | Uses Chinese explanations with English technical terms throughout. Defines Chinese/English names and useful abbreviations, then keeps English available within each relevant section, terminology-bearing heading, comparison and exercise so readers can match English sources locally. A glossary supplements these mappings; it does not replace them. Other language or terminology-density preferences take priority. |
 | **Underlined takeaways** | Selects a conclusion or summary clause representing each substantive paragraph or coherent fragment, usually one span and occasionally two. Preserves qualifications and uncertainty; avoids underlining entire paragraphs or every technical term. |
 | **Contents and navigation** | Uses descriptive headings, decides whether to include a table of contents from the actual rendered page count, and checks final page numbers and links. |
 | **Compact, readable layout** | Reduces unnecessary line breaks and repeated wording. Uses clear heading levels, spacing, tables, and equations; selects fonts supporting Chinese and English in the actual environment and checks their rendering. |
-| **Incremental edits and content protection** | For later font, TOC, or underline changes, edits the latest accepted document, preserves text and equations, and verifies the affected formatting and navigation. |
+| **Incremental edits and content protection** | Font, TOC and underline edits preserve text and equations exactly. Requests for more English terminology enrich the current notes while preserving explanations, examples, formulas, exercise options/answers and citations. Both paths verify affected layout and final navigation. |
 | **Reusable automation** | Provides scripts for text extraction, cache reuse, exact underline application, and structural checks. Codex performs semantic judgment and composition. |
 
 **The TOC policy uses the final rendered page count of the delivered document, including the TOC, front matter, and references:**
@@ -220,11 +220,11 @@ A Codex skill for comprehensive, coherent, evidence-grounded academic notes, wit
 
 | 功能 | 默认行为 |
 |---|---|
-| **双语表达与术语统一** | 中文解释 + English technical terminology；首次出现重要术语时给出必要的中文、英文和缩写。可按请求改为英文或其他双语方式。 |
+| **双语表达与术语统一** | 中文解释配合贯穿各节的 English technical terminology。首次定义中文、英文及必要缩写，并在相关小节、术语型标题、对照表与练习中保留英文对应，便于直接匹配英文材料。术语表只能辅助查阅，不能替代正文中的对应。用户指定的语言与术语密度优先。 |
 | **结论下划线** | 为每个实质段落或连贯片段选取能代表其主旨的结论／总括句，通常一处，必要时两处；保留适用条件与不确定性，避免整段或所有术语都被强调。 |
 | **目录与快速定位** | 使用清晰、具体的标题；根据实际渲染页数决定是否生成目录，并检查最终页码与跳转。 |
 | **紧凑、易读的排版** | 减少无意义换行与重复表达，使用清晰的标题层级、段落间距、表格和公式；根据实际环境选择支持中英文的字体并检查渲染。 |
-| **增量修改与内容保护** | 后续只改字体、目录或下划线时，基于最新确认的文档修改，保留原文与公式，验证受影响的格式和导航。 |
+| **增量修改与内容保护** | 只改字体、目录或下划线时，精确保留原文与公式；要求增加英文术语时，在当前笔记内补齐对应，保留解释、案例、公式、练习选项／答案及引用。两种修改都检查受影响的排版与最终导航。 |
 | **可复用的自动化工具** | 提供文本提取、缓存复用、精确下划线标注与结构检查脚本，减少重复操作；语义判断与写作仍由 Codex 执行。 |
 
 **目录规则以交付文档的最终渲染页数为准，包含目录、前置页与参考文献：**

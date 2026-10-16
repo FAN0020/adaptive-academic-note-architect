@@ -1,4 +1,4 @@
 interface:
   display_name: "Adaptive Academic Note Architect"
   short_description: "完整保留课堂信息，重建知识逻辑，核查来源并生成易读双语笔记"
-  default_prompt: "Use $adaptive-academic-note-architect to turn these course materials into comprehensive, coherent Chinese notes with English terminology, underlined takeaways, and a page-numbered table of contents when needed."
+  default_prompt: "Use $adaptive-academic-note-architect to turn these course materials into comprehensive, coherent Chinese notes with English technical terms retained throughout explanations, comparisons and exercises, underlined takeaways, and a page-numbered table of contents when needed."

@@ -6,7 +6,17 @@ Introduce context before advice: “在考虑模型微调之前，应优先排�
 
 Use prose for explanations, lists for parallel points/steps, tables for comparisons/repeated records. Do not line-break every sentence or put prose in tables for decoration. Definitions can be inline; difficult concepts need adequate explanation. Compact layout is not a page cap.
 
-Default bilingual mode means Chinese explanation with English terms, not duplicate translation of every sentence. Define important terminology once with Chinese/English/acronym; keep names and notation consistent. Honor other established language modes.
+## Bilingual terminology
+
+Default bilingual mode supports reading Chinese explanations while recognizing the terminology in English slides, papers and questions. Honor explicit language and terminology-density preferences; this mode does not require duplicating every sentence in two languages.
+
+- Introduce a technical concept with its Chinese name, English name and useful acronym. Prefer the source's English spelling and distinctions; do not invent an expansion for an ambiguous acronym. A translation added by the notes is not a verbatim source quotation.
+- Keep English available locally: reintroduce the English term at the first substantive use in each relevant section, and retain it where a later comparison or takeaway depends on recognizing that term. Once the local mapping is clear, either Chinese–English pairs or the established English term within Chinese prose can be used naturally. A single definition early in a long document is insufficient.
+- Give terminology-bearing headings, comparison axes, component names, diagram labels and exercise terms/options an English counterpart where it helps match the source. Preserve source identifiers, method names and option wording; explanations and answer rationales should use the same terms. Ordinary prose headings and everyday words do not need mechanical translation.
+- For example, after introducing 状态（State）、观察（Observation）and 反馈（Feedback）, a later explanation can say “Observation 更新 State，再作为 Feedback 影响下一步决策.” Avoid a later all-Chinese comparison that makes the reader search earlier pages for these mappings.
+- An optional glossary can aid lookup but does not replace English in the relevant explanations and exercises. Judge coverage by whether the reader can match the concepts locally, not by an English-word quota. Avoid annotating every occurrence, long repeated expansions or an unchanged full sentence translated twice.
+
+For a request to add more English terminology, enrich the current notes rather than replacing explanations with a glossary or shortening them. Preserve substantive content and source boundaries, then recheck affected tables, line wrapping, page numbers and TOC links.
 
 ## Underlined takeaways
 

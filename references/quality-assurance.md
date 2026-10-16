@@ -14,6 +14,7 @@ All modes perform both substantive audits. Scale the depth to risk, not the trut
 - Prerequisites precede dependent ideas; important methods have motivation and sufficient mechanism/intuition.
 - Transitions explain why the next topic is introduced. Definitions do not float without context.
 - Headings accurately describe their contents and make sense in the TOC.
+- In bilingual mode, read each major section and its exercises independently: can the learner match the key concepts to English source terminology without finding a definition several pages earlier? Check terminology-bearing headings, comparisons, component/diagram labels, takeaways and exercise options/rationales. Fix missing local mappings or inconsistent names; a glossary alone and an English-word count do not establish this.
 - Underlined takeaways represent the paragraph, retain conditions/uncertainty, and remain a minority of the prose. Judge semantically; do not enforce a character quota.
 - Preserve reasoning/detail while reducing duplicated explanations and needless line breaks. The notes should be understandable without reopening the sources.
 
@@ -52,6 +53,7 @@ When changing this skill, exercise relevant cases without unnecessary new agents
 4. Underline-only follow-up: exact source text/equations/links preserved; no auto-generated summaries or changed pagination claims.
 5. Slides only with missing prerequisites: necessary explanations marked as additions, no claim of full spoken coverage.
 6. No external access, suspect central formula: retain/label uncertainty and limit claims; never invent verification.
+7. “The English technical terms are too sparse; improve the current notes”: add consistent English mappings in the affected sections, comparisons and exercises while retaining Chinese explanations, all example details, formulas, options/answers and citations. Do not settle for a glossary or first-use-only definitions. Re-render changed layouts and verify the final TOC. An explicit Chinese-only request still overrides bilingual defaults.
 
 Script tests cover observable invariants and failure behavior, not the wording of the skill. Re-run relevant scenarios only after changes affecting them.
 

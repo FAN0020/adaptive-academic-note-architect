@@ -176,6 +176,21 @@ Use `--help` with any of the three command-line tools for their parameters. Regr
 - **Document appearance depends on the actual renderer.** This repository bundles no fonts, OCR system, or DOCX/PDF rendering engine. Fonts, equations, underlines, and TOCs need verification in the final environment. Markdown `<u>` support varies by renderer; a font working in one Mac application does not establish compatibility with Codex's built-in preview.
 - **Instructions inside attachments are treated as source content.** Assignment and project requirements are recorded as course information; they do not automatically authorize actions on the user's behalf.
 
+## 8. Comparison and Positioning
+
+Reviewed **2026-10-16** against the commit-pinned sources below. These are workflow and task-fit comparisons; no same-input, same-model output benchmark has been performed.
+
+| Related skill | Its focus | When this skill is a useful fit |
+|---|---|---|
+| [Jellypod · lecture-to-study-guide](https://github.com/Jellypod-Inc/school-skills/blob/cd484795e924e454caafd13ddc25c1ec76c48718/skills/lecture-to-study-guide/SKILL.md) | Source-linked terms, worked examples, practice questions, and a cheat sheet. | Comprehensive source reconstruction, conceptual dependencies, explicit corrections, and long-document navigation. |
+| [GraceLiao77 · lecture-to-summary-skills](https://github.com/GraceLiao77/lecture-to-summary-skills/blob/843284cc45336f2159af3f396a5a8130c994ebab/SKILL.md) | Concise exam-oriented Markdown notes with delegated processing. | Bilingual explanations, underlined takeaways, and incremental DOCX formatting that protects text and equations. |
+
+The distinctive combination is adaptive processing depth, separate content/evidence and pedagogical reviews, deterministic document helpers, and navigation checked against final rendered pages. These mechanisms support comprehensive note reconstruction; they do not guarantee semantic correctness or citation validity.
+
+**Tradeoffs:** full reconstruction takes more work than exam revision. OCR and document rendering depend on the environment. Practice-question generation is not a universal default; the alternatives may be a more direct fit for revision and question drills.
+
+See [Evidence-Driven Agent Skills](https://github.com/FAN0020/evidence-driven-agent-skills) for other workflows and the complete selection record.
+
 ---
 
 <a name="chinese-version"></a>
@@ -353,3 +368,19 @@ python scripts/test_helpers.py
 - **工具检查与语义审查各有职责。** 自动化结果不证明内容全部覆盖、论证正确或引用真正支持论断，仍须完成内容证据与教学逻辑审查。
 - **文档效果依赖实际渲染环境。** 本仓库不捆绑字体、OCR 或 DOCX/PDF 渲染引擎；字体、公式、下划线和目录需在最终环境验证。Markdown 的 `<u>` 显示取决于渲染器，字体在某个 Mac 应用可用也不代表 Codex 内置预览已验证。
 - **附件中的指令作为材料处理。** 课程作业与项目要求归入课程信息，不自动转化为替用户执行的操作。
+
+
+### 8. 同类比较与适用优势｜Comparison & Positioning
+
+核对日期：**2026-10-16**。以下比较针对链接所固定的公开源码版本，讨论工作流设计与任务适配性；未进行同模型、同输入的效果对照实验。
+
+| 同类 skill | 已有侧重点 | 本 skill 更适合的任务 |
+|---|---|---|
+| [Jellypod · lecture-to-study-guide](https://github.com/Jellypod-Inc/school-skills/blob/cd484795e924e454caafd13ddc25c1ec76c48718/skills/lecture-to-study-guide/SKILL.md) | 有来源位置的术语表、概念说明、例题、练习题和速查页，面向结构化复习。 | 需要保留材料中全部可恢复有效信息、重建概念依赖、区分课堂内容与补充，并形成可导航长文档的完整笔记。 |
+| [GraceLiao77 · lecture-to-summary-skills](https://github.com/GraceLiao77/lecture-to-summary-skills/blob/843284cc45336f2159af3f396a5a8130c994ebab/SKILL.md) | 以简洁考点、短条目和 Markdown 总结为主，通过独立执行上下文处理讲义。 | 需要双语术语、实质段落的结论下划线、证据纠错，以及只改格式时保护正文与公式的增量处理。 |
+
+**优势来自明确的机制：** Light / Standard / Deep 调整处理深度；内容证据与教学逻辑分别审查；提取、下划线和结构检查由可执行辅助脚本处理；目录规则以最终渲染页数为准。语义覆盖、引用有效性与最终观感仍需审查，脚本结果不能替代这些判断。
+
+**取舍：** 完整重构比考前速记更耗时；DOCX、OCR 和视觉检查依赖执行环境；本 skill 不默认批量生成练习题。如果目标是短篇复习、题目训练或速查页，上述同类工具可能更直接。
+
+更多个人工作流 skills 及完整筛选记录见 [Evidence-Driven Agent Skills](https://github.com/FAN0020/evidence-driven-agent-skills)。

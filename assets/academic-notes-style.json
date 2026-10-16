@@ -1,0 +1,16 @@
+{
+  "language": "zh_with_en_terms",
+  "detail": "comprehensive",
+  "layout": "compact_readable",
+  "page": {"size": "A4", "margin_mm": 20},
+  "body": {"size_pt": 11, "line_spacing": 1.15, "space_after_pt": 5},
+  "heading": {"color": "000000", "sizes_pt": [17, 14, 12], "keep_with_next": true},
+  "font_candidates": {
+    "cjk_body": ["Source Han Serif CN", "Noto Serif CJK SC", "Songti SC", "PingFang SC"],
+    "cjk_heading": ["Source Han Sans CN", "Noto Sans CJK SC", "PingFang SC"],
+    "latin": ["Arial", "Helvetica", "Liberation Sans"]
+  },
+  "underline": {"style": "single", "color": "000000", "selection": "semantic_takeaways"},
+  "toc": {"required_above_pages": 10, "conditional_from_pages": 6, "max_default_depth": 2},
+  "note": "Font candidates are not guarantees. Verify local availability, CJK glyphs, embedding permission if embedding, and final rendering. Preserve a user-selected template."
+}

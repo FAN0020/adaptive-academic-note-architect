@@ -1,0 +1,4 @@
+lxml
+pypdf
+python-pptx
+reportlab
